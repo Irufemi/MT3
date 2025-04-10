@@ -154,5 +154,13 @@ Matrix4x4 MakeRotateZMatrix(const float& theta);
 /// <returns></returns>
 Matrix4x4 MakeRotateXYZMatrix(const float& thetaX, const float& thetaY, const float& thetaZ);
 
+/// <summary>
+/// 4x4アフィン変換行列を高速に生成
+/// </summary>
+/// <param name="scale"></param>
+/// <param name="rotate"></param>
+/// <param name="translate"></param>
+/// <returns></returns>
+Matrix4x4 MakeAffineMatrix(const Vector3<float>& scale, const Vector3<float>& rotate, const Vector3<float>& translate);
 #pragma endregion
 
