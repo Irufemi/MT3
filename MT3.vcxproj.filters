@@ -108,5 +108,6 @@
     <ClInclude Include="Vector3.h" />
     <ClInclude Include="Math.h" />
     <ClInclude Include="ScreenPrint.h" />
+    <ClInclude Include="Matrix4x4.h" />
   </ItemGroup>
 </Project>
