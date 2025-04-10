@@ -124,5 +124,35 @@ Matrix4x4 MakeScaleMatrix(const Vector3<float>& scale);
 /// <returns></returns>
 Vector3<float> Transform(const Vector3<float>& vector, const Matrix4x4& matrix);
 
+/// <summary>
+/// 4x4 X軸周り回転行列の作成
+/// </summary>
+/// <param name="theta"></param>
+/// <returns></returns>
+Matrix4x4 MakeRotateXMatrix(const float& theta);
+
+/// <summary>
+/// 4x4 Y軸周り回転行列の作成
+/// </summary>
+/// <param name="theta"></param>
+/// <returns></returns>
+Matrix4x4 MakeRotateYMatrix(const float& theta);
+
+/// <summary>
+/// 4x4 Z軸周り回転行列の作成
+/// </summary>
+/// <param name="theta"></param>
+/// <returns></returns>
+Matrix4x4 MakeRotateZMatrix(const float& theta);
+
+/// <summary>
+/// 4x4 3次元回転行列の作成
+/// </summary>
+/// <param name="thetaX"></param>
+/// <param name="thetaY"></param>
+/// <param name="thetaZ"></param>
+/// <returns></returns>
+Matrix4x4 MakeRotateXYZMatrix(const float& thetaX, const float& thetaY, const float& thetaZ);
+
 #pragma endregion
 
