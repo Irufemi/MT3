@@ -1,6 +1,9 @@
 #pragma once
 
 #include "Vector3.h"
+#include "Matrix4x4.h"
+
+#pragma region 3次元ベクトル関数
 
 /// <summary>
 /// 加算
@@ -48,4 +51,57 @@ float Length(const Vector3<float>& vector);
 /// <param name="vector"></param>
 /// <returns></returns>
 Vector3<float> Normalize(const Vector3<float>& vector);
+
+
+
+#pragma endregion
+
+#pragma region 4x4行列関数
+
+/// <summary>
+/// 4x4行列の加法
+/// </summary>
+/// <param name="m1"></param>
+/// <param name="m2"></param>
+/// <returns></returns>
+Matrix4x4 Add(const Matrix4x4& m1, const Matrix4x4& m2);
+
+/// <summary>
+/// 4x4行列の減法
+/// </summary>
+/// <param name="m1"></param>
+/// <param name="m2"></param>
+/// <returns></returns>
+Matrix4x4 Subtract(const Matrix4x4& m1, const Matrix4x4& m2);
+
+/// <summary>
+/// 4x4行列の積
+/// </summary>
+/// <param name="vector"></param>
+/// <param name="m"></param>
+/// <returns></returns>
+Matrix4x4 Multiply(const Matrix4x4& vector, const Matrix4x4& m);
+
+/// <summary>
+/// 4x4逆行列を求める
+/// </summary>
+/// <param name="m"></param>
+/// <returns></returns>
+Matrix4x4 Inverse(const Matrix4x4& m);
+
+/// <summary>
+/// 4x4転置行列を求める 
+/// </summary>
+/// <param name="m"></param>
+/// <returns></returns>
+Matrix4x4 Transpose(const Matrix4x4& m);
+
+/// <summary>
+/// 4x4単位行列の作成
+/// </summary>
+/// <returns></returns>
+Matrix4x4 MakeIdentity4x4();
+
+
+#pragma endregion
 
