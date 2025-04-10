@@ -33,3 +33,10 @@ float Length(const Vector3<float>& vector) {
     return std::sqrt(Dot(vector, vector));
 
 }
+
+//正規化
+Vector3<float> Normalize(const Vector3<float>& vector) {
+
+    return Multiply(1.0f / Length(vector), vector);
+
+}
