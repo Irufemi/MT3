@@ -291,4 +291,66 @@ Matrix4x4 MakeIdentity4x4() {
 	return m;
 }
 
+// 4x4平行移動行列の作成関数 
+Matrix4x4 MakeTranslateMatrix(const Vector3<float>& translate) {
+	static Matrix4x4 resultTranslateMatrix;
+	resultTranslateMatrix.m[0][0] = 1.0f;
+	resultTranslateMatrix.m[0][1] = 0.0f;
+	resultTranslateMatrix.m[0][2] = 0.0f;
+	resultTranslateMatrix.m[0][3] = 0.0f;
+	resultTranslateMatrix.m[1][0] = 0.0f;
+	resultTranslateMatrix.m[1][1] = 1.0f;
+	resultTranslateMatrix.m[1][2] = 0.0f;
+	resultTranslateMatrix.m[1][3] = 0.0f;
+	resultTranslateMatrix.m[2][0] = 0.0f;
+	resultTranslateMatrix.m[2][1] = 0.0f;
+	resultTranslateMatrix.m[2][2] = 1.0f;
+	resultTranslateMatrix.m[2][3] = 0.0f;
+	resultTranslateMatrix.m[3][0] = translate.x;
+	resultTranslateMatrix.m[3][1] = translate.y;
+	resultTranslateMatrix.m[3][2] = translate.z;
+	resultTranslateMatrix.m[3][3] = 1.0f;
+	return resultTranslateMatrix;
+}
+
+//4x4拡大縮小行列の作成関数
+Matrix4x4 MakeScaleMatrix(const Vector3<float>& scale) {
+	static Matrix4x4 resultScaleMtrix;
+	resultScaleMtrix.m[0][0] = scale.x;
+	resultScaleMtrix.m[0][1] = 0.0f;
+	resultScaleMtrix.m[0][2] = 0.0f;
+	resultScaleMtrix.m[0][3] = 0.0f;
+	resultScaleMtrix.m[1][0] = 0.0f;
+	resultScaleMtrix.m[1][1] = scale.y;
+	resultScaleMtrix.m[1][2] = 0.0f;
+	resultScaleMtrix.m[1][3] = 0.0f;
+	resultScaleMtrix.m[2][0] = 0.0f;
+	resultScaleMtrix.m[2][1] = 0.0f;
+	resultScaleMtrix.m[2][2] = scale.z;
+	resultScaleMtrix.m[2][3] = 0.0f;
+	resultScaleMtrix.m[3][0] = 0.0f;
+	resultScaleMtrix.m[3][1] = 0.0f;
+	resultScaleMtrix.m[3][2] = 0.0f;
+	resultScaleMtrix.m[3][3] = 1.0f;
+	return resultScaleMtrix;
+}
+
+// 3次元ベクトルを同次座標として変換する 
+Vector3<float> Transform(const Vector3<float>& vector, const Matrix4x4& m) {
+	static Vector3<float> transformResult = { 0.0f,0.0f,0.0f };
+	transformResult.x = vector.x * m.m[0][0] + vector.y * m.m[1][0] + vector.z * m.m[2][0] + 1.0f * m.m[3][0];
+	transformResult.y = vector.x * m.m[0][1] + vector.y * m.m[1][1] + vector.z * m.m[2][1] + 1.0f * m.m[3][1];
+	transformResult.z = vector.x * m.m[0][2] + vector.y * m.m[1][2] + vector.z * m.m[2][2] + 1.0f * m.m[3][2];
+	float w = vector.x * m.m[0][3] + vector.y * m.m[1][3] + vector.z * m.m[2][3] + 1.0f * m.m[3][3];
+	if (w != 0.0f) { ///ベクトルに対して基本的な操作を行う行列でwが0になることはありえない
+		transformResult.x /= w; //w=1がデカルト座標系であるので、w除算することで同時座標をデカルト座標に戻す
+		transformResult.y /= w;
+		transformResult.z /= w;
+		return transformResult;
+	}
+	else {
+		return { 0 };
+	}
+}
+
 #pragma endregion

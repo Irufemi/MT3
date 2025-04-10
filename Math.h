@@ -102,6 +102,27 @@ Matrix4x4 Transpose(const Matrix4x4& m);
 /// <returns></returns>
 Matrix4x4 MakeIdentity4x4();
 
+/// <summary>
+/// 4x4平行移動行列の作成
+/// </summary>
+/// <param name="translate"></param>
+/// <returns></returns>
+Matrix4x4 MakeTranslateMatrix(const Vector3<float>& translate);
+
+/// <summary>
+/// 4x4拡大縮小行列の作成
+/// </summary>
+/// <param name="scale"></param>
+/// <returns></returns>
+Matrix4x4 MakeScaleMatrix(const Vector3<float>& scale);
+
+/// <summary>
+/// 3次元ベクトルを同次座標として変換
+/// </summary>
+/// <param name="vector"></param>
+/// <param name="matrix"></param>
+/// <returns></returns>
+Vector3<float> Transform(const Vector3<float>& vector, const Matrix4x4& matrix);
 
 #pragma endregion
 
