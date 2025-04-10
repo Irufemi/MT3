@@ -356,19 +356,19 @@ Vector3<float> Transform(const Vector3<float>& vector, const Matrix4x4& m) {
 }
 
 // 4x4 X軸周り回転行列の作成関数
-Matrix4x4 MakeRotateXMatrix(const float& theta) {
+Matrix4x4 MakeRotateXMatrix(const float& radian) {
 	static Matrix4x4 matrix;
 	matrix.m[0][0] = 1.0f;
 	matrix.m[0][1] = 0.0f;
 	matrix.m[0][2] = 0.0f;
 	matrix.m[0][3] = 0.0f;
 	matrix.m[1][0] = 0.0f;
-	matrix.m[1][1] = std::cos(theta * static_cast<float>(M_PI) / 180.0f);
-	matrix.m[1][2] = std::sin(theta * static_cast<float>(M_PI) / 180.0f);
+	matrix.m[1][1] = std::cos(radian);
+	matrix.m[1][2] = std::sin(radian);
 	matrix.m[1][3] = 0.0f;
 	matrix.m[2][0] = 0.0f;
-	matrix.m[2][1] = -std::sin(theta * static_cast<float>(M_PI) / 180.0f);
-	matrix.m[2][2] = std::cos(theta * static_cast<float>(M_PI) / 180.0f);
+	matrix.m[2][1] = -std::sin(radian);
+	matrix.m[2][2] = std::cos(radian);
 	matrix.m[2][3] = 0.0f;
 	matrix.m[3][0] = 0.0f;
 	matrix.m[3][1] = 0.0f;
@@ -378,19 +378,19 @@ Matrix4x4 MakeRotateXMatrix(const float& theta) {
 }
 
 // 4x4 Y軸周り回転行列の作成関数
-Matrix4x4 MakeRotateYMatrix(const float& theta) {
+Matrix4x4 MakeRotateYMatrix(const float& radian) {
 	static Matrix4x4 matrix;
-	matrix.m[0][0] = std::cos(theta * static_cast<float>(M_PI) / 180.0f);
+	matrix.m[0][0] = std::cos(radian);
 	matrix.m[0][1] = 0.0f;
-	matrix.m[0][2] = std::sin(theta * static_cast<float>(M_PI) / 180.0f);
+	matrix.m[0][2] = std::sin(radian);
 	matrix.m[0][3] = 0.0f;
 	matrix.m[1][0] = 0.0f;
 	matrix.m[1][1] = 1.0f;
 	matrix.m[1][2] = 0.0f;
 	matrix.m[1][3] = 0.0f;
-	matrix.m[2][0] = -std::sin(theta * static_cast<float>(M_PI) / 180.0f);
+	matrix.m[2][0] = -std::sin(radian);
 	matrix.m[2][1] = 0.0f;
-	matrix.m[2][2] = std::cos(theta * static_cast<float>(M_PI) / 180.0f);
+	matrix.m[2][2] = std::cos(radian);
 	matrix.m[2][3] = 0.0f;
 	matrix.m[3][0] = 0.0f;
 	matrix.m[3][1] = 0.0f;
@@ -400,14 +400,14 @@ Matrix4x4 MakeRotateYMatrix(const float& theta) {
 }
 
 // 4x4 Z軸周り回転行列の作成関数
-Matrix4x4 MakeRotateZMatrix(const float& theta) {
+Matrix4x4 MakeRotateZMatrix(const float& radian) {
 	static Matrix4x4 matrix;
-	matrix.m[0][0] = std::cos(theta * static_cast<float>(M_PI) / 180.0f);
-	matrix.m[0][1] = std::sin(theta * static_cast<float>(M_PI) / 180.0f);
+	matrix.m[0][0] = std::cos(radian);
+	matrix.m[0][1] = std::sin(radian);
 	matrix.m[0][2] = 0.0f;
 	matrix.m[0][3] = 0.0f;
-	matrix.m[1][0] = -std::sin(theta * static_cast<float>(M_PI) / 180.0f);
-	matrix.m[1][1] = std::cos(theta * static_cast<float>(M_PI) / 180.0f);
+	matrix.m[1][0] = -std::sin(radian);
+	matrix.m[1][1] = std::cos(radian);
 	matrix.m[1][2] = 0.0f;
 	matrix.m[1][3] = 0.0f;
 	matrix.m[2][0] = 0.0f;
