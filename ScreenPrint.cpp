@@ -1,6 +1,5 @@
 #include "ScreenPrint.h"
 
-
 #include <Novice.h>
 
 void VectorScreenPrintf(int x, int y, const Vector3<float>& vector, const char* label) {
@@ -9,4 +8,5 @@ void VectorScreenPrintf(int x, int y, const Vector3<float>& vector, const char* 
     Novice::ScreenPrintf(x + kColumnWidth, y, "%.02f", vector.y);
     Novice::ScreenPrintf(x + kColumnWidth * 2, y, "%.02f", vector.z);
     Novice::ScreenPrintf(x + kColumnWidth * 3, y, "%s", label);
+
 }
