@@ -88,6 +88,7 @@ public:
     /// <param name="farClip"></param>
     void MakePerspectiveFovMatrix(float fovY = 0.63f, float aspectRatio = 1.33f, float nearClip, float farClip);
 
+
     /// <summary>
     /// 正射行列の作成
     /// </summary>
@@ -110,6 +111,19 @@ public:
     /// <param name="maxDepth"></param>
     void MakeViewportMatrix(float left = 100.0f, float top = 200.0f, float width = 600.0f, float height = 300.0f, float minDepth = 0.0f, float maxDepth = 1.0f);
 
+    /// <summary>
+    /// 透視投影行列の更新
+    /// </summary>
+    void UpdatePerspectiveFovMatrix();
 
+    /// <summary>
+    /// 正射行列の更新
+    /// </summary>
+    void UpdateOrthographicMatrix();
+
+    /// <summary>
+    /// 透視投影行列の更新
+    /// </summary>
+    void UpdateViewportMatrix();
 };
 
