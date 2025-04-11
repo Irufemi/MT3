@@ -5,7 +5,6 @@
 #include "Matrix4x4.h"
 #include "Math.h"
 
-
 const char kWindowTitle[] = "LE2B_11_スエヒロ_コウイチ_タイトル";
 const int kWindowWidth = 1280;
 const int kWindowHeight = 720;
@@ -20,10 +19,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
     char keys[256] = { 0 };
     char preKeys[256] = { 0 };
 
-    Vector3<float> scale = { 1.2f,0.79f,-2.1f };
-    Vector3<float> rotate = { 0.4f,1.43f,-0.0f };
-    Vector3<float> translate = { 2.7f,-4.15f,1.57f };
-    Matrix4x4 worldmatrix = MakeAffineMatrix(scale, rotate, translate);
+    Matrix4x4 orthographicMatrix = MakeOrthographicMatrix(-160.0f, 160.0f, 200.0f, 300.0f, 0.0f, 1000.0f);
+    Matrix4x4 perspectiveFovMatrix = MakePerspectiveFovMatrix(0.63f, 1.33f, 0.1f, 1000.0f);
+    Matrix4x4 viewportMatrix = MakeViewportMatrix(100.0f, 200.0f, 600.0f, 300.0f, 0.0f, 1.0f);
 
     // ウィンドウの×ボタンが押されるまでループ
     while (Novice::ProcessMessage() == 0) {
@@ -46,7 +44,9 @@ int WINAPI WinMain(HINSTANCE, HINSTANCE, LPSTR, int) {
         /// ↓描画処理ここから
         ///
 
-        MatrixScreenPrintf(0, 0, worldmatrix, "worldmatrix");
+        MatrixScreenPrintf(0, 0, orthographicMatrix, "orthographicMatrix");
+        MatrixScreenPrintf(0, kRowHeight * 5, perspectiveFovMatrix, "perspectiveFovMatrix");
+        MatrixScreenPrintf(0, kRowHeight * 10, viewportMatrix, "viewportMatrix");
 
         ///
         /// ↑描画処理ここまで

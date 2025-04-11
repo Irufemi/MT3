@@ -22,6 +22,7 @@
     </ClCompile>
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="ScreenPrint.cpp" />
+    <ClCompile Include="Camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\KamataEngine\DirectXGame\audio\Audio.h">
@@ -109,5 +110,7 @@
     <ClInclude Include="Math.h" />
     <ClInclude Include="ScreenPrint.h" />
     <ClInclude Include="Matrix4x4.h" />
+    <ClInclude Include="Camera.h" />
+    <ClInclude Include="Vector2.h" />
   </ItemGroup>
 </Project>

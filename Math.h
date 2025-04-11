@@ -124,6 +124,9 @@ Matrix4x4 MakeScaleMatrix(const Vector3<float>& scale);
 /// <returns></returns>
 Vector3<float> Transform(const Vector3<float>& vector, const Matrix4x4& matrix);
 
+
+//回転は左手座標系(左手を握って親指の方向が軸、その他の指の幕方向が回転の正の方向)
+
 /// <summary>
 /// 4x4 X軸周り回転行列の作成
 /// </summary>
@@ -162,5 +165,40 @@ Matrix4x4 MakeRotateXYZMatrix(const float& thetaX, const float& thetaY, const fl
 /// <param name="translate"></param>
 /// <returns></returns>
 Matrix4x4 MakeAffineMatrix(const Vector3<float>& scale, const Vector3<float>& rotate, const Vector3<float>& translate);
+
+/// <summary>
+/// 透視投影行列の作成
+/// </summary>
+/// <param name="fovY"></param>
+/// <param name="aspectRatio"></param>
+/// <param name="nearClip"></param>
+/// <param name="farClip"></param>
+/// <returns></returns>
+Matrix4x4 MakePerspectiveFovMatrix(float fovY, float aspectRatio, float nearClip, float farClip);
+
+/// <summary>
+/// 正射行列の作成
+/// </summary>
+/// <param name="left"></param>
+/// <param name="top"></param>
+/// <param name="right"></param>
+/// <param name="bottom"></param>
+/// <param name="nearClip"></param>
+/// <param name="farClip"></param>
+/// <returns></returns>
+Matrix4x4 MakeOrthographicMatrix(float left, float top, float right, float bottom, float nearClip, float farClip);
+
+/// <summary>
+/// ビューポート変換行列の作成
+/// </summary>
+/// <param name="left"></param>
+/// <param name="top"></param>
+/// <param name="width"></param>
+/// <param name="height"></param>
+/// <param name="minDepth"></param>
+/// <param name="maxDepth"></param>
+/// <returns></returns>
+Matrix4x4 MakeViewportMatrix(float left, float top, float width, float height, float minDepth, float maxDepth);
+
 #pragma endregion
 
