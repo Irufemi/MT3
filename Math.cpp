@@ -450,4 +450,70 @@ Matrix4x4 MakeAffineMatrix(const Vector3<float>& scale, const Vector3<float>& ro
 	return affineMatrix;
 }
 
+//透視投影行列の作成
+Matrix4x4 MakePerspectiveFovMatrix(float fovY, float aspectRatio, float nearClip, float farClip) {
+	Matrix4x4 perspectiveFovMatrix;
+	perspectiveFovMatrix.m[0][0] = 1.0f / aspectRatio * (1.0f / std::tan(fovY / 2.0f));
+	perspectiveFovMatrix.m[0][1] = 0.0f;
+	perspectiveFovMatrix.m[0][2] = 0.0f;
+	perspectiveFovMatrix.m[0][3] = 0.0f;
+	perspectiveFovMatrix.m[1][0] = 0.0f;
+	perspectiveFovMatrix.m[1][1] = 1.0f / std::tan(fovY * 2.0f);
+	perspectiveFovMatrix.m[1][2] = 0.0f;
+	perspectiveFovMatrix.m[1][3] = 0.0f;
+	perspectiveFovMatrix.m[2][0] = 0.0f;
+	perspectiveFovMatrix.m[2][1] = 0.0f;
+	perspectiveFovMatrix.m[2][2] = farClip / (farClip - nearClip);
+	perspectiveFovMatrix.m[2][3] = 1.0f;
+	perspectiveFovMatrix.m[3][0] = 0.0f;
+	perspectiveFovMatrix.m[3][1] = 0.0f;
+	perspectiveFovMatrix.m[3][2] = (-nearClip * farClip) / (farClip - nearClip);
+	perspectiveFovMatrix.m[3][3] = 0.0f;
+	return perspectiveFovMatrix;
+}
+
+//正射行列の作成
+Matrix4x4 MakeOrthographicMatrix(float left, float top, float right, float bottom, float nearClip, float farClip) {
+	Matrix4x4 projectionMatrix;
+	projectionMatrix.m[0][0] = 2.0f / (right - left);
+	projectionMatrix.m[0][1] = 0.0f;
+	projectionMatrix.m[0][2] = 0.0f;
+	projectionMatrix.m[0][3] = 0.0f;
+	projectionMatrix.m[1][0] = 0.0f;
+	projectionMatrix.m[1][1] = 2.0f / (top - bottom);
+	projectionMatrix.m[1][2] = 0.0f;
+	projectionMatrix.m[1][3] = 0.0f;
+	projectionMatrix.m[2][0] = 0.0f;
+	projectionMatrix.m[2][1] = 0.0f;
+	projectionMatrix.m[2][2] = 1.0f / (farClip - nearClip);
+	projectionMatrix.m[2][3] = 0.0f;
+	projectionMatrix.m[3][0] = (left + right) / (left - right);
+	projectionMatrix.m[3][1] = (top + bottom) / (bottom - top);
+	projectionMatrix.m[3][2] = nearClip / (nearClip - farClip);
+	projectionMatrix.m[3][3] = 1.0f;
+	return projectionMatrix;
+}
+
+//ビューポート変換行列の作成
+Matrix4x4 MakeViewportMatrix(float left, float top, float width, float height, float minDepth, float maxDepth) {
+	Matrix4x4 viewportMatrix;
+	viewportMatrix.m[0][0] = width / 2.0f;
+	viewportMatrix.m[0][1] = 0.0f;
+	viewportMatrix.m[0][2] = 0.0f;
+	viewportMatrix.m[0][3] = 0.0f;
+	viewportMatrix.m[1][0] = 0.0f;
+	viewportMatrix.m[1][1] = -height / 2.0f;
+	viewportMatrix.m[1][2] = 0.0f;
+	viewportMatrix.m[1][3] = 0.0f;
+	viewportMatrix.m[2][0] = 0.0f;
+	viewportMatrix.m[2][1] = 0.0f;
+	viewportMatrix.m[2][2] = maxDepth - minDepth;
+	viewportMatrix.m[2][3] = 0.0f;
+	viewportMatrix.m[3][0] = left + width / 2.0f;
+	viewportMatrix.m[3][1] = top + height / 2.0f;
+	viewportMatrix.m[3][2] = minDepth;
+	viewportMatrix.m[3][3] = 1.0f;
+	return viewportMatrix;
+}
+
 #pragma endregion
